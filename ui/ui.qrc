@@ -1,0 +1,16 @@
+<!DOCTYPE RCC>
+<RCC version="1.0">
+  <qresource prefix="/">
+    <file>qtquickcontrols2.conf</file>
+    <file>Main.qml</file>
+  </qresource>
+  <qresource prefix="/Components">
+    <file>Components/qmldir</file>
+    <file>Components/TestButton.qml</file>
+  </qresource>
+  <qresource prefix="/Pages">
+    <file>Pages/qmldir</file>
+    <file>Pages/FirstPage.qml</file>
+    <file>Pages/FirstPageForm.ui.qml</file>
+  </qresource>
+</RCC>
