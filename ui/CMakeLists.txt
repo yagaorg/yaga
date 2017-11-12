@@ -1,0 +1,1 @@
+yaga_ui(ui.qrc)
