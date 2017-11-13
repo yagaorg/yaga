@@ -1,1 +1,1 @@
-yaga_ui(ui.qrc)
+yaga_sources(ui.qrc)

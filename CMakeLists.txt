@@ -27,5 +27,6 @@ target_include_directories(${PROJECT_NAME}
   PRIVATE
     src
     lib/libgit2/include
+    lib/GSL/include
 )
 target_link_libraries(${PROJECT_NAME} git2 Qt5::Core Qt5::Quick)

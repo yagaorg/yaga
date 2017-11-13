@@ -1,13 +1,10 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
 
-#include <git2.h>
-#include <core/git.h>
+#include <git/repository.h>
 
 int main(int argc, char *argv[])
 {
-    yaga::git::use();
-
     QCoreApplication::setAttribute(Qt::AA_EnableHighDpiScaling);
     QGuiApplication app(argc, argv);
 

@@ -1,2 +1,2 @@
-add_subdirectory(core)
+add_subdirectory(git)
 yaga_sources(main.cpp)

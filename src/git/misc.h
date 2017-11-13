@@ -17,7 +17,7 @@ struct libgit {
   }
 };
 
-void use() {
+inline void init() {
   static libgit git;
 }
 
