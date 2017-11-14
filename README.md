@@ -6,11 +6,24 @@ yaga (Yet Another Git App) aims to be an open source, performant and cross-platf
 
 ### Prerequisites
 
-  * Docker (optional, used for building `libgit2`)
+So far the project has been built and tested on Linux systems only. Other prerequisites are as follows.
+
+  * CMake >= 3.5
+  * Qt >= 5.6
 
 ### Build steps
 
-  1. Optionally build `libgit2` ( https://wwww.github.com/libgit2/libgit2 ). If you would like to avoid polluting your system with the libraries necessary to build `libgit2`, you can use the attached shell script that builds it in a Docker container. Otherwise you can run the commands from the `Dockerfile` manually.
+  1. Initialize submodules (or clone using the `--recursive` flag: `git clone --recursive`).
 
-    cd lib/libgit2
-    ./build.sh
+    git submodule init
+    git submodule update
+
+  2. Create a directory named build and run CMake.
+
+    mkdir build
+    cd build
+    cmake ..
+
+  3. Build the project.
+
+    cmake --build .
