@@ -6,12 +6,11 @@
 namespace yaga {
 namespace git {
 
-revwalk::revwalk(repository& repo) : walk(nullptr, git_revwalk_free) {
+revwalk::revwalk(repository& repository) : walk(nullptr, git_revwalk_free) {
     init();
-    git_revwalk* revwalk;
-    git_revwalk_new(&revwalk, repo.raw());
-    this->walk =
-        std::unique_ptr<git_revwalk, decltype(&git_revwalk_free)>(revwalk, git_revwalk_free);
+    git_revwalk* revwalk_raw;
+    git_revwalk_new(&revwalk_raw, repository.raw());
+    walk.reset(revwalk_raw);
 }
 
 bool revwalk::next(git_oid& oid) {

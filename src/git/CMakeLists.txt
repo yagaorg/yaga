@@ -1,2 +1,2 @@
-yaga_headers(misc.h repository.h revwalk.h)
-yaga_sources(repository.cpp revwalk.cpp)
+add_sources(misc.h repository.h revwalk.h)
+add_sources(repository.cpp revwalk.cpp)

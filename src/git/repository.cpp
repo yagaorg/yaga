@@ -6,20 +6,20 @@
 namespace yaga {
 namespace git {
 
-repository::repository(git_repository* repo) : repo(repo, git_repository_free) {}
+repository::repository(git_repository* repo_raw) : repo(repo_raw, git_repository_free) {}
 
 repository repository::open(gsl::cstring_span<> path) {
     init();
-    git_repository* repo = nullptr;
-    git_repository_open(&repo, gsl::ensure_z(path).data());
-    return repository(repo);
+    git_repository* repo_raw = nullptr;
+    git_repository_open(&repo_raw, gsl::ensure_z(path).data());
+    return repository(repo_raw);
 }
 
 repository repository::open_bare(gsl::cstring_span<> path) {
     init();
-    git_repository* repo = nullptr;
-    git_repository_open_bare(&repo, gsl::ensure_z(path).data());
-    return repository(repo);
+    git_repository* repo_raw = nullptr;
+    git_repository_open_bare(&repo_raw, gsl::ensure_z(path).data());
+    return repository(repo_raw);
 }
 
 git_repository* repository::raw() {
