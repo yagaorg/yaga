@@ -1,6 +1,7 @@
 #include "revwalk.h"
 
 #include "misc.h"
+#include "oid.h"
 #include "repository.h"
 
 namespace yaga {
@@ -13,8 +14,8 @@ revwalk::revwalk(repository& repository) : walk(nullptr, git_revwalk_free) {
     walk.reset(revwalk_raw);
 }
 
-bool revwalk::next(git_oid& oid) {
-    return !git_revwalk_next(&oid, walk.get());
+bool revwalk::next(oid& oid) {
+    return !git_revwalk_next(&oid.raw(), walk.get());
 }
 
 void revwalk::push_range(gsl::cstring_span<> range) {

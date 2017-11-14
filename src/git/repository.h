@@ -1,4 +1,5 @@
-#pragma once
+#ifndef YAGA_GIT_REPOSITORY_H
+#define YAGA_GIT_REPOSITORY_H
 
 #include <memory>
 #include <string>
@@ -27,3 +28,5 @@ struct repository {
 
 }  // namespace git
 }  // namespace yaga
+
+#endif
