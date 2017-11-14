@@ -30,7 +30,6 @@ macro (set_common_compiler_options TGT)
       -Wstrict-null-sentinel
       -Wstrict-overflow=5
       -Wswitch-default
-      -Wundef
       -Wno-unknown-pragmas
       -Wuseless-cast
     )

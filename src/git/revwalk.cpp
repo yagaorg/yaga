@@ -1,5 +1,6 @@
 #include "revwalk.h"
 
+#include "error.h"
 #include "misc.h"
 #include "oid.h"
 #include "repository.h"
@@ -7,12 +8,17 @@
 namespace yaga {
 namespace git {
 
-revwalk::revwalk(repository& repository) : walk(nullptr, git_revwalk_free) {
+outcome::result<revwalk, error> revwalk::from_repository(repository& repository) {
     init();
     git_revwalk* revwalk_raw;
-    git_revwalk_new(&revwalk_raw, repository.raw());
-    walk.reset(revwalk_raw);
+    int error = git_revwalk_new(&revwalk_raw, repository.raw());
+    if (error) {
+        return error::from_last_error(error);
+    }
+    return revwalk(revwalk_raw);
 }
+
+revwalk::revwalk(git_revwalk* raw) : walk(raw, git_revwalk_free) {}
 
 bool revwalk::next(oid& oid) {
     return !git_revwalk_next(&oid.raw(), walk.get());

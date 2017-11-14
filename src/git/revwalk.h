@@ -5,6 +5,11 @@
 
 #include <git2.h>
 #include <gsl/gsl>
+#include <outcome.hpp>
+
+#include "error.h"
+
+namespace outcome = OUTCOME_V2_NAMESPACE;
 
 namespace yaga {
 namespace git {
@@ -13,11 +18,13 @@ struct oid;
 struct repository;
 
 struct revwalk {
-    explicit revwalk(repository& repo);
+    static outcome::result<revwalk, error> from_repository(repository& repo);
+
     void push_range(gsl::cstring_span<> range);
     bool next(oid& oid);
 
   private:
+    revwalk(git_revwalk* raw);
     std::unique_ptr<git_revwalk, decltype(&git_revwalk_free)> walk;
 };
 

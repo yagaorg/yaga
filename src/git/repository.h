@@ -6,20 +6,24 @@
 
 #include <git2.h>
 #include <gsl/gsl>
+#include <outcome.hpp>
 
+#include "error.h"
 #include "revwalk.h"
+
+namespace outcome = OUTCOME_V2_NAMESPACE;
 
 namespace yaga {
 namespace git {
 
 struct repository {
-    static repository open(gsl::cstring_span<> path);
-    static repository open_bare(gsl::cstring_span<> path);
+    static outcome::result<repository, error> open(gsl::cstring_span<> path);
+    static outcome::result<repository, error> open_bare(gsl::cstring_span<> path);
 
     git_repository* raw();
     git_repository* raw() const;
 
-    revwalk create_revwalk();
+    outcome::result<revwalk, error> create_revwalk();
 
   private:
     explicit repository(git_repository* repo_raw);
