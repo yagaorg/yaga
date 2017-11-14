@@ -1,12 +1,12 @@
 #include "repository.h"
 
 #include "misc.h"
+#include "revwalk.h"
 
 namespace yaga {
 namespace git {
 
-repository::repository(git_repository* repo)
-    : repo(repo, git_repository_free) {}
+repository::repository(git_repository* repo) : repo(repo, git_repository_free) {}
 
 repository repository::open(gsl::cstring_span<> path) {
     init();
@@ -30,9 +30,9 @@ git_repository* repository::raw() const {
     return repo.get();
 }
 
-revwalk repository::revwalk() {
-    return yaga::git::revwalk(*this);
+revwalk repository::create_revwalk() {
+    return revwalk(*this);
 }
 
-}
-}
+}  // namespace git
+}  // namespace yaga

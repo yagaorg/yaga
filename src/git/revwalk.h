@@ -13,9 +13,10 @@ struct revwalk {
     explicit revwalk(repository& repo);
     void push_range(gsl::cstring_span<> range);
     bool next(git_oid& oid);
-private:
+
+  private:
     std::unique_ptr<git_revwalk, decltype(&git_revwalk_free)> walk;
 };
 
-}
-}
+}  // namespace git
+}  // namespace yaga

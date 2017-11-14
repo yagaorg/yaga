@@ -6,6 +6,7 @@ include(cmake/yaga-files.cmake)
 set(CMAKE_INCLUDE_CURRENT_DIR ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
+set(QML_IMPORT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/ui CACHE STRING "QML Import path")
 
 find_package(Qt5 COMPONENTS Core Quick REQUIRED)
 
