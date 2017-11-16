@@ -24,6 +24,9 @@ set_common_compiler_options(${PROJECT_NAME})
 target_include_directories(${PROJECT_NAME}
   PRIVATE
     src
+)
+target_include_directories(${PROJECT_NAME} SYSTEM
+  PRIVATE
     lib/libgit2/include
     lib/outcome
 )

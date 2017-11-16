@@ -78,8 +78,9 @@ std::string error_code_category::message(int c) const {
             return "Uncommitted changes in index prevented operation";
         case error_code::directory:
             return "Operation was not valid for a directory,";
+        default:
+            return "Unknown error";
     }
-    return "Unknown error";
 }
 }  // namespace detail
 
