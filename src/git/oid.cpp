@@ -5,10 +5,10 @@
 namespace yaga {
 namespace git {
 
-outcome::result<oid, error> oid::from_string(gsl::cstring_span<> str) {
+outcome::result<oid, error> oid::from_string(const std::string& str) {
     init();
     git_oid oid_raw;
-    int error = git_oid_fromstr(&oid_raw, gsl::ensure_z(str).data());
+    int error = git_oid_fromstr(&oid_raw, str.data());
 
     if (error < 0) {
         return error::from_last_error(error);

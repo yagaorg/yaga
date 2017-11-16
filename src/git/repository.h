@@ -5,7 +5,6 @@
 #include <string>
 
 #include <git2.h>
-#include <gsl/gsl>
 #include <outcome.hpp>
 
 #include "error.h"
@@ -17,10 +16,10 @@ namespace yaga {
 namespace git {
 
 struct repository {
-    static outcome::result<repository, error> open(gsl::cstring_span<> path);
-    static outcome::result<repository, error> open_bare(gsl::cstring_span<> path);
-    static outcome::result<repository, error> clone(gsl::cstring_span<> url,
-                                                    gsl::cstring_span<> path);
+    static outcome::result<repository, error> open(const std::string& path);
+    static outcome::result<repository, error> open_bare(const std::string& path);
+    static outcome::result<repository, error> clone(const std::string& url,
+                                                    const std::string& path);
 
     git_repository* raw();
     git_repository* raw() const;

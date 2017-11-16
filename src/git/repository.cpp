@@ -7,10 +7,10 @@ namespace git {
 
 repository::repository(git_repository* repo_raw) : repo(repo_raw, git_repository_free) {}
 
-outcome::result<repository, error> repository::open(gsl::cstring_span<> path) {
+outcome::result<repository, error> repository::open(const std::string& path) {
     init();
     git_repository* repo_raw = nullptr;
-    int error = git_repository_open(&repo_raw, gsl::ensure_z(path).data());
+    int error = git_repository_open(&repo_raw, path.data());
     if (error < 0) {
         return error::from_last_error(error);
     }
@@ -18,10 +18,10 @@ outcome::result<repository, error> repository::open(gsl::cstring_span<> path) {
     return repository(repo_raw);
 }
 
-outcome::result<repository, error> repository::open_bare(gsl::cstring_span<> path) {
+outcome::result<repository, error> repository::open_bare(const std::string& path) {
     init();
     git_repository* repo_raw = nullptr;
-    int error = git_repository_open_bare(&repo_raw, gsl::ensure_z(path).data());
+    int error = git_repository_open_bare(&repo_raw, path.data());
     if (error < 0) {
         return error::from_last_error(error);
     }
@@ -29,12 +29,11 @@ outcome::result<repository, error> repository::open_bare(gsl::cstring_span<> pat
     return repository(repo_raw);
 }
 
-outcome::result<repository, error> repository::clone(gsl::cstring_span<> url,
-                                                     gsl::cstring_span<> path) {
+outcome::result<repository, error> repository::clone(const std::string& url,
+                                                     const std::string& path) {
     init();
     git_repository* repo_raw = nullptr;
-    int error =
-        git_clone(&repo_raw, gsl::ensure_z(url).data(), gsl::ensure_z(path).data(), nullptr);
+    int error = git_clone(&repo_raw, url.data(), path.data(), nullptr);
     if (error < 0) {
         return error::from_last_error(error);
     }

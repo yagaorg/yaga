@@ -24,8 +24,8 @@ bool revwalk::next(oid& oid) {
     return !git_revwalk_next(&oid.raw(), walk.get());
 }
 
-void revwalk::push_range(gsl::cstring_span<> range) {
-    git_revwalk_push_range(walk.get(), gsl::ensure_z(range).data());
+void revwalk::push_range(const std::string& range) {
+    git_revwalk_push_range(walk.get(), range.data());
 }
 
 }  // namespace git

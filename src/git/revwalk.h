@@ -2,9 +2,9 @@
 #define YAGA_GIT_REVWALK_H
 
 #include <memory>
+#include <string>
 
 #include <git2.h>
-#include <gsl/gsl>
 #include <outcome.hpp>
 
 #include "error.h"
@@ -20,7 +20,7 @@ struct repository;
 struct revwalk {
     static outcome::result<revwalk, error> from_repository(repository& repo);
 
-    void push_range(gsl::cstring_span<> range);
+    void push_range(const std::string& range);
     bool next(oid& oid);
 
   private:
