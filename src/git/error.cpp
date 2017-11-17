@@ -83,19 +83,18 @@ std::string error_code_category::message(int c) const {
     }
 }
 }  // namespace detail
+}  // namespace git
+}  // namespace yaga
 
-const detail::error_code_category& git_error_code_category() {
-    static detail::error_code_category c;
+const yaga::git::detail::error_code_category& git_error_code_category() {
+    static yaga::git::detail::error_code_category c;
     return c;
 }
 
-std::error_code make_error_code(error_code e) {
+std::error_code make_error_code(yaga::git::error_code e) {
     return {static_cast<int>(e), git_error_code_category()};
 }
 
-std::error_code make_error_code(error e) {
+std::error_code make_error_code(yaga::git::error e) {
     return make_error_code(e.code());
 }
-
-}  // namespace git
-}  // namespace yaga

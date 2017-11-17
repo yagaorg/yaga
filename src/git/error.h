@@ -92,16 +92,16 @@ struct error_code_category : public std::error_category {
 };
 }  // namespace detail
 
+}  // namespace git
+}  // namespace yaga
+
 // Make a global instance of our custom error category
-const detail::error_code_category& git_error_code_category();
+const yaga::git::detail::error_code_category& git_error_code_category();
 
 // A make_error_category global function that will be found by ADL
 // for both the error code and its wrapper
-std::error_code make_error_code(error_code e);
-std::error_code make_error_code(error e);
-
-}  // namespace git
-}  // namespace yaga
+std::error_code make_error_code(yaga::git::error_code e);
+std::error_code make_error_code(yaga::git::error e);
 
 // We need to register our custom error code as a std::error_code
 namespace std {
