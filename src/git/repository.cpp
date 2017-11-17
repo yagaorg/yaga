@@ -1,6 +1,6 @@
 #include "repository.h"
 
-#include "misc.h"
+#include "init.h"
 
 namespace yaga {
 namespace git {

@@ -15,6 +15,10 @@ namespace outcome = OUTCOME_V2_NAMESPACE;
 namespace yaga {
 namespace git {
 
+struct clone_options {
+  private:
+};
+
 struct repository {
     static outcome::result<repository, error> open(const std::string& path);
     static outcome::result<repository, error> open_bare(const std::string& path);

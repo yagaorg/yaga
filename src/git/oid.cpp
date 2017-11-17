@@ -1,6 +1,6 @@
 #include "oid.h"
 
-#include "misc.h"
+#include "init.h"
 
 namespace yaga {
 namespace git {
@@ -17,7 +17,8 @@ outcome::result<oid, error> oid::from_string(const std::string& str) {
     return oid(std::move(oid_raw));
 }
 
-constexpr oid::oid(git_oid&& raw) : oid_raw(raw) {}
+oid::oid(const git_oid& raw) : oid_raw(raw) {}
+oid::oid(git_oid&& raw) : oid_raw(raw) {}
 
 git_oid& oid::raw() {
     return oid_raw;

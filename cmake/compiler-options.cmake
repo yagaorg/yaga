@@ -32,6 +32,7 @@ macro (set_common_compiler_options TGT)
       -Wswitch-default
       -Wno-unknown-pragmas
       -Wuseless-cast
+      -Wno-missing-field-intiializers
     )
   endif()
 endmacro()

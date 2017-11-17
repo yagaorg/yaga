@@ -4,3 +4,6 @@
 [submodule "cmake/sanitizers-cmake"]
 	path = cmake/sanitizers-cmake
 	url = https://github.com/arsenm/sanitizers-cmake.git
+[submodule "lib/stx"]
+	path = lib/stx
+	url = https://github.com/tcbrindle/cpp17_headers.git

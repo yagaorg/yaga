@@ -29,6 +29,7 @@ target_include_directories(${PROJECT_NAME} SYSTEM
   PRIVATE
     lib/libgit2/include
     lib/outcome
+    lib/stx/include
 )
 target_link_libraries(${PROJECT_NAME} git2 Qt5::Core Qt5::Quick)
 add_sanitizers(${PROJECT_NAME})

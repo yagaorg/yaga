@@ -14,13 +14,15 @@ namespace yaga {
 namespace git {
 
 struct oid {
+    oid() = default;
+    oid(const git_oid& oid_raw);
+    oid(git_oid&& oid_raw);
     static outcome::result<oid, error> from_string(const std::string& str);
 
     git_oid& raw();
     const git_oid& raw() const;
 
   private:
-    constexpr oid(git_oid&& oid_raw);
     git_oid oid_raw;
 };
 

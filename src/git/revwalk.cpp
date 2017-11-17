@@ -1,7 +1,7 @@
 #include "revwalk.h"
 
 #include "error.h"
-#include "misc.h"
+#include "init.h"
 #include "oid.h"
 #include "repository.h"
 
