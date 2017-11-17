@@ -3,8 +3,6 @@
 
 #include <git2.h>
 
-#include "repository.h"
-
 namespace yaga_git
 {
     struct libgit

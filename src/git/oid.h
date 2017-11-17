@@ -22,6 +22,8 @@ namespace yaga_git
         git_oid& raw();
         const git_oid& raw() const;
 
+        std::string to_string() const;
+
       private:
         git_oid oid_raw;
     };

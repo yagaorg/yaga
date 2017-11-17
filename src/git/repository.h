@@ -7,6 +7,7 @@
 #include <git2.h>
 #include <outcome.hpp>
 
+#include "commit.h"
 #include "error.h"
 #include "revwalk.h"
 
@@ -26,6 +27,7 @@ namespace yaga_git
         git_repository* raw() const;
 
         outcome::result<revwalk, error> create_revwalk();
+        commit lookup_commit(oid oid);
 
       private:
         explicit repository(git_repository* repo_raw);

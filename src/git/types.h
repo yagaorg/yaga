@@ -14,6 +14,13 @@ namespace yaga_git
         link = GIT_FILEMODE_LINK,
         commit = GIT_FILEMODE_COMMIT
     };
+
+    struct time_with_offset
+    {
+        time_with_offset(time_t time, int offset) : time(time), offset(offset) {}
+        time_t time;
+        int offset;
+    };
 }
 
 #endif

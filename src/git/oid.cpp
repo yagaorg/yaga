@@ -2,9 +2,11 @@
 
 #include "init.h"
 
+using namespace std;
+
 namespace yaga_git
 {
-    outcome::result<oid, error> oid::from_string(const std::string& str)
+    outcome::result<oid, error> oid::from_string(const string& str)
     {
         init();
         git_oid oid_raw;
@@ -13,7 +15,7 @@ namespace yaga_git
         if (error < 0)
             return error::from_last_error(error);
 
-        return oid(std::move(oid_raw));
+        return oid(move(oid_raw));
     }
 
     oid::oid(const git_oid& raw) : oid_raw(raw) {}
@@ -28,5 +30,11 @@ namespace yaga_git
     const git_oid& oid::raw() const
     {
         return oid_raw;
+    }
+
+    string oid::to_string() const
+    {
+        auto *result = git_oid_tostr_s(&oid_raw);
+        return string(result);
     }
 }
