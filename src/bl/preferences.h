@@ -1,7 +1,8 @@
 #ifndef PREFERENCES_H
 #define PREFERENCES_H
 
-struct preferences {
+struct preferences
+{
     preferences();
     ~preferences();
 };

@@ -5,19 +5,25 @@
 
 #include "repository.h"
 
-namespace yaga {
-namespace git {
+namespace yaga_git
+{
+    struct libgit
+    {
+        libgit()
+        {
+            git_libgit2_init();
+        }
 
-struct libgit {
-    libgit() { git_libgit2_init(); }
-    ~libgit() { git_libgit2_shutdown(); }
-};
+        ~libgit()
+        {
+            git_libgit2_shutdown();
+        }
+    };
 
-inline void init() {
-    static libgit git;
+    inline void init()
+    {
+        static libgit git;
+    }
 }
-
-}  // namespace git
-}  // namespace yaga
 
 #endif
