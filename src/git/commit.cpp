@@ -6,26 +6,7 @@ namespace yaga_git
 {
     commit commit::from_raw(git_commit* raw_commit)
     {
-        auto *commit_oid = git_commit_id(raw_commit);
-        auto commit_id = oid(*commit_oid);
-
-        auto message = get_safe_string(git_commit_message(raw_commit));
-        auto message_encoding = get_safe_string(git_commit_message_encoding(raw_commit));
-        auto summary = get_safe_string(git_commit_summary(raw_commit));
-
-        auto raw_time = git_commit_time(raw_commit);
-        auto raw_time_offset_min = git_commit_time_offset(raw_commit);
-        auto time = time_with_offset(raw_time, raw_time_offset_min);
-
-        auto committer = signature::from_raw(git_commit_committer(raw_commit));
-        auto author = signature::from_raw(git_commit_author(raw_commit));
-
-        auto header = get_safe_string(git_commit_raw_header(raw_commit));
-
-        auto *tree_oid = git_commit_tree_id(raw_commit);
-        auto tree_id = oid(*tree_oid);
-
-        return commit(commit_id, message, message_encoding, summary, time, committer, author, header, tree_id);
+        return commit(raw_commit);
     }
 
     commit::commit(
@@ -39,15 +20,29 @@ namespace yaga_git
         const string& header,
         const oid& tree_id)
         : commit_id_(commit_id),
+          author_(author),
+          committer_(committer),
+          header_(header),
           message_(message),
           message_encoding_(message_encoding),
           summary_(summary),
           time_(time),
-          committer_(committer),
-          author_(author),
-          header_(header),
           tree_id_(tree_id)
-    {}
+    {
+    }
+
+    commit::commit(git_commit* raw_commit)
+        : commit_id_(*git_commit_id(raw_commit)),
+          author_(git_commit_author(raw_commit)),
+          committer_(git_commit_committer(raw_commit)),
+          header_(get_safe_string(git_commit_raw_header(raw_commit))),
+          message_(get_safe_string(git_commit_message(raw_commit))),
+          message_encoding_(get_safe_string(git_commit_message_encoding(raw_commit))),
+          summary_(get_safe_string(git_commit_summary(raw_commit))),
+          time_(git_commit_time(raw_commit), git_commit_time_offset(raw_commit)),
+          tree_id_(*git_commit_tree_id(raw_commit))
+    {
+    }
 
     const signature& commit::author() const
     {
@@ -94,8 +89,8 @@ namespace yaga_git
         return tree_id_;
     }
 
-    string commit::get_safe_string(const char *str)
+    const char* commit::get_safe_string(const char* str)
     {
-        return str == NULL ? string() : string(str);
+        return str == NULL ? "" : str;
     }
 }

@@ -6,15 +6,21 @@ namespace yaga_git
 {
     signature signature::from_raw(const git_signature* raw_signature)
     {
-        auto name = string(raw_signature->name);
-        auto email = string(raw_signature->email);
-        auto time = time_with_offset(raw_signature->when.time, raw_signature->when.offset);
-
-        return signature(name, email, time);
+        return signature(raw_signature);
     }
 
-    signature::signature(const string& name, const string& email, const time_with_offset& time)
+    signature::signature(
+        const std::string& name,
+        const std::string& email,
+        const time_with_offset& time)
         : name_(name), email_(email), time_(time)
+    {
+    }
+
+    signature::signature(const git_signature* raw_signature)
+        : name_(raw_signature->name),
+          email_(raw_signature->email),
+          time_(raw_signature->when.time, raw_signature->when.offset)
     {
     }
 

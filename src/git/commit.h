@@ -12,7 +12,7 @@ namespace yaga_git
 {
     struct commit
     {
-        static commit from_raw(git_commit *raw_commit);
+        static commit from_raw(git_commit* raw_commit);
 
         commit(
             const oid& commit_id,
@@ -36,8 +36,8 @@ namespace yaga_git
         const oid& tree_id() const;
 
       private:
-        signature author_;
         oid commit_id_;
+        signature author_;
         signature committer_;
         std::string header_;
         std::string message_;
@@ -46,7 +46,8 @@ namespace yaga_git
         time_with_offset time_;
         oid tree_id_;
 
-        static std::string get_safe_string(const char *str);
+        commit(git_commit* raw_commit);
+        static const char* get_safe_string(const char* str);
     };
 }
 

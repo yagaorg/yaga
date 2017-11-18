@@ -13,6 +13,7 @@ namespace yaga_git
     {
         static signature from_raw(const git_signature* signature_raw);
 
+        explicit signature(const git_signature* signature_raw);
         signature(const std::string& name, const std::string& email, const time_with_offset& time);
 
         const std::string& email() const;
@@ -20,8 +21,8 @@ namespace yaga_git
         const time_with_offset& time() const;
 
       private:
-        std::string email_;
         std::string name_;
+        std::string email_;
         time_with_offset time_;
     };
 }
