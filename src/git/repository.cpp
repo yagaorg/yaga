@@ -4,7 +4,7 @@
 
 namespace yaga_git
 {
-    repository::repository(git_repository* repo_raw) : repo(repo_raw, git_repository_free) {}
+    repository::repository(git_repository* repo_raw) : repo_(repo_raw, git_repository_free) {}
 
     outcome::result<repository, error> repository::open(const std::string& path)
     {
@@ -49,12 +49,12 @@ namespace yaga_git
 
     git_repository* repository::raw()
     {
-        return repo.get();
+        return repo_.get();
     }
 
     git_repository* repository::raw() const
     {
-        return repo.get();
+        return repo_.get();
     }
 
     outcome::result<revwalk, error> repository::create_revwalk()
@@ -65,7 +65,7 @@ namespace yaga_git
     commit repository::lookup_commit(oid oid)
     {
         git_commit *raw_commit;
-        int error = git_commit_lookup(&raw_commit, repo.get(), &oid.raw());
+        int error = git_commit_lookup(&raw_commit, repo_.get(), &oid.raw());
         return commit::from_raw(raw_commit);
     }
 }

@@ -25,7 +25,7 @@ namespace yaga_git
 
       private:
         revwalk(git_revwalk* raw);
-        std::unique_ptr<git_revwalk, decltype(&git_revwalk_free)> walk;
+        std::unique_ptr<git_revwalk, decltype(&git_revwalk_free)> walk_;
     };
 }
 

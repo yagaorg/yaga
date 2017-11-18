@@ -31,7 +31,7 @@ namespace yaga_git
 
       private:
         explicit repository(git_repository* repo_raw);
-        std::unique_ptr<git_repository, decltype(&git_repository_free)> repo;
+        std::unique_ptr<git_repository, decltype(&git_repository_free)> repo_;
     };
 }
 

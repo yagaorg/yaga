@@ -19,15 +19,15 @@ namespace yaga_git
         return revwalk(revwalk_raw);
     }
 
-    revwalk::revwalk(git_revwalk* raw) : walk(raw, git_revwalk_free) {}
+    revwalk::revwalk(git_revwalk* raw) : walk_(raw, git_revwalk_free) {}
 
     bool revwalk::next(oid& oid)
     {
-        return !git_revwalk_next(&oid.raw(), walk.get());
+        return !git_revwalk_next(&oid.raw(), walk_.get());
     }
 
     void revwalk::push_range(const std::string& range)
     {
-        git_revwalk_push_range(walk.get(), range.data());
+        git_revwalk_push_range(walk_.get(), range.data());
     }
 }
