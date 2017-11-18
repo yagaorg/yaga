@@ -62,10 +62,14 @@ namespace yaga_git
         return revwalk::from_repository(*this);
     }
 
-    commit repository::lookup_commit(oid oid)
+    outcome::result<commit, error> repository::lookup_commit(oid oid)
     {
         git_commit *raw_commit;
+
         int error = git_commit_lookup(&raw_commit, repo_.get(), &oid.raw());
+        if (error < 0)
+            return error::from_last_error(error);
+
         return commit::from_raw(raw_commit);
     }
 }

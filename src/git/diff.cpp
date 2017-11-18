@@ -26,4 +26,4 @@ namespace yaga_git
         return static_cast<diff_flag>(static_cast<int_type>(a) & static_cast<int_type>(b));
     }
 
-}  // namespace git
+}

@@ -83,8 +83,8 @@ namespace yaga_git
       private:
         constexpr error(int code, const git_error* raw_error);
 
-        error_code original_code;
-        const git_error* original_error = nullptr;
+        error_code original_code_;
+        const git_error* original_error_ = nullptr;
     };
 
     namespace detail

@@ -28,6 +28,6 @@ namespace yaga_git
         git_oid oid_raw;
     };
 
-}  // namespace yaga
+}
 
 #endif

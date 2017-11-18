@@ -27,7 +27,7 @@ namespace yaga_git
         git_repository* raw() const;
 
         outcome::result<revwalk, error> create_revwalk();
-        commit lookup_commit(oid oid);
+        outcome::result<commit, error> lookup_commit(oid oid);
 
       private:
         explicit repository(git_repository* repo_raw);

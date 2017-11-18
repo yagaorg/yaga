@@ -17,7 +17,7 @@ namespace yaga_git
 
     struct time_with_offset
     {
-        time_with_offset(time_t time, int offset) : time(time), offset(offset) {}
+        time_with_offset(time_t new_time, int new_offset) : time(new_time), offset(new_offset) {}
         time_t time;
         int offset;
     };

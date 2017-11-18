@@ -11,22 +11,22 @@ namespace yaga_git
 
     error_code error::code() const
     {
-        return original_code;
+        return original_code_;
     }
 
     const char* error::message() const
     {
-        return original_error ? original_error->message : "";
+        return original_error_ ? original_error_->message : "";
     }
 
     error_category error::category() const
     {
-        return original_error ? static_cast<error_category>(original_error->klass)
-                              : error_category::none;
+        return original_error_ ? static_cast<error_category>(original_error_->klass)
+                               : error_category::none;
     }
 
     constexpr error::error(int code, const git_error* raw_error)
-        : original_code(static_cast<error_code>(code)), original_error(raw_error)
+        : original_code_(static_cast<error_code>(code)), original_error_(raw_error)
     {
     }
 
