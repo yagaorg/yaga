@@ -12,6 +12,8 @@ add_sources(
   git/repository.h
   git/revwalk.h
   git/signature.h
+  git/tree.h
+  git/tree_entry.h
   git/types.h)
 add_sources(
   git/checkout.cpp
@@ -22,7 +24,9 @@ add_sources(
   git/remote.cpp
   git/repository.cpp
   git/revwalk.cpp
-  git/signature.cpp)
+  git/signature.cpp
+  git/tree.cpp
+  git/tree_entry.cpp)
 
 # bl
 add_sources(bl/preferences.h)
