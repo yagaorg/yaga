@@ -14,7 +14,9 @@ add_sources(
   git/signature.h
   git/tree.h
   git/tree_entry.h
-  git/types.h)
+  git/types.h
+)
+
 add_sources(
   git/checkout.cpp
   git/commit.cpp
@@ -26,7 +28,8 @@ add_sources(
   git/revwalk.cpp
   git/signature.cpp
   git/tree.cpp
-  git/tree_entry.cpp)
+  git/tree_entry.cpp
+)
 
 # bl
 add_sources(bl/preferences.h)

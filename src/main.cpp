@@ -1,5 +1,6 @@
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>
+#include <QSet>
 
 #include <git/checkout.h>
 #include <git/oid.h>

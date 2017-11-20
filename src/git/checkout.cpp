@@ -8,7 +8,7 @@ namespace yaga_git
         const char* raw_path,
         std::size_t completed,
         std::size_t total)
-        : path(raw_path), completed_steps(completed), total_steps(total)
+        : path(!raw_path ? "" : raw_path), completed_steps(completed), total_steps(total)
     {
     }
 
@@ -122,7 +122,7 @@ namespace yaga_git
         if (progress_callback_)
         {
             // We send the original callback in place of the payload. C++ lambdas provide a
-            // more natural way for capturing values in the enclosing scope then passing
+            // more natural way for capturing values in the enclosing scope than passing
             // a separate payload
             options.progress_cb = [](const char* path, std::size_t completed_steps,
                                      std::size_t total_steps, void* cb) {

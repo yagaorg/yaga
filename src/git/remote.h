@@ -1,6 +1,8 @@
 #ifndef YAGA_GIT_REMOTE_H
 #define YAGA_GIT_REMOTE_H
 
+#include <memory>
+
 #include <git2.h>
 #include <stx/optional.hpp>
 
