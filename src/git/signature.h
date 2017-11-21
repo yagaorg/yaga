@@ -1,7 +1,7 @@
 #ifndef YAGA_GIT_SIGNATURE_H
 #define YAGA_GIT_SIGNATURE_H
 
-#include <string>
+#include <stx/string_view.hpp>
 
 #include <git2.h>
 
@@ -11,18 +11,16 @@ namespace yaga_git
 {
     struct signature
     {
-        static signature from_raw(const git_signature* signature_raw);
-
-        explicit signature(const git_signature* signature_raw);
         signature(const std::string& name, const std::string& email, const time_with_offset& time);
+        signature(const git_signature* signature_raw);
 
-        const std::string& email() const;
-        const std::string& name() const;
+        const stx::string_view& email() const;
+        const stx::string_view& name() const;
         const time_with_offset& time() const;
 
       private:
-        std::string name_;
-        std::string email_;
+        stx::string_view name_;
+        stx::string_view email_;
         time_with_offset time_;
     };
 }

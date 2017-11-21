@@ -76,12 +76,11 @@ namespace yaga_git
     outcome::result<commit, error> repository::lookup_commit(oid oid)
     {
         git_commit* raw_commit;
-
         int error = git_commit_lookup(&raw_commit, repo_.get(), &oid.raw());
         if (error < 0)
             return error::from_last_error(error);
 
-        return commit::from_raw(raw_commit);
+        return commit(raw_commit);
     }
 
     create_repository_state::create_repository_state(const char* path_raw, int is_bare)

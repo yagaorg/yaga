@@ -21,9 +21,8 @@ namespace yaga_git
     tree_entry tree::entry_by_index(int index) const
     {
         auto* raw_tree_entry = git_tree_entry_byindex(raw_tree_, index);
-        auto tree_entry = tree_entry::from_raw(raw_tree_entry);
 
-        return tree_entry;
+        return tree_entry(raw_tree_entry);
     }
 
     outcome::result<tree_entry, error> tree::entry_by_path(const std::string& path) const
@@ -33,6 +32,6 @@ namespace yaga_git
         if (error < 0)
             return error::from_last_error(error);
 
-        return tree_entry::from_raw(raw_tree_entry);;
+        return tree_entry(raw_tree_entry);
     }
 }

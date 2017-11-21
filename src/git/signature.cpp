@@ -1,14 +1,7 @@
 #include "signature.h"
 
-using namespace std;
-
 namespace yaga_git
 {
-    signature signature::from_raw(const git_signature* raw_signature)
-    {
-        return signature(raw_signature);
-    }
-
     signature::signature(
         const std::string& name,
         const std::string& email,
@@ -24,12 +17,12 @@ namespace yaga_git
     {
     }
 
-    const string& signature::email() const
+    const stx::string_view& signature::email() const
     {
         return email_;
     }
 
-    const string& signature::name() const
+    const stx::string_view& signature::name() const
     {
         return name_;
     }
