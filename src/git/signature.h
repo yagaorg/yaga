@@ -11,11 +11,11 @@ namespace yaga_git
 {
     struct signature
     {
-        signature(const std::string& name, const std::string& email, const time_with_offset& time);
+        signature(const stx::string_view name, const stx::string_view email, const time_with_offset& time);
         signature(const git_signature* signature_raw);
 
-        const stx::string_view& email() const;
-        const stx::string_view& name() const;
+        const stx::string_view email() const;
+        const stx::string_view name() const;
         const time_with_offset& time() const;
 
       private:

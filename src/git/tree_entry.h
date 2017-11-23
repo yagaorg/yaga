@@ -17,7 +17,7 @@ namespace yaga_git
         tree_entry(git_tree_entry* raw_tree_entry);
 
         const filemode& mode() const;
-        const stx::string_view& name() const;
+        const stx::string_view name() const;
         const object_type& type() const;
 
       private:

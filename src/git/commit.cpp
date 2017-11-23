@@ -31,22 +31,22 @@ namespace yaga_git
         return commit_id_;
     }
 
-    const stx::string_view& commit::header() const
+    const stx::string_view commit::header() const
     {
         return header_;
     }
 
-    const stx::string_view& commit::message() const
+    const stx::string_view commit::message() const
     {
         return message_;
     }
 
-    const stx::string_view& commit::message_encoding() const
+    const stx::string_view commit::message_encoding() const
     {
         return message_encoding_;
     }
 
-    const stx::string_view& commit::summary() const
+    const stx::string_view commit::summary() const
     {
         return summary_;
     }

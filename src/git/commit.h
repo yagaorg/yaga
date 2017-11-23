@@ -19,10 +19,10 @@ namespace yaga_git
         const signature& author() const;
         const signature& committer() const;
         const oid& commit_id() const;
-        const stx::string_view& header() const;
-        const stx::string_view& message() const;
-        const stx::string_view& message_encoding() const;
-        const stx::string_view& summary() const;
+        const stx::string_view header() const;
+        const stx::string_view message() const;
+        const stx::string_view message_encoding() const;
+        const stx::string_view summary() const;
         const time_with_offset time() const;
         const oid& tree_id() const;
 

@@ -23,7 +23,7 @@ namespace yaga_git
         return mode_;
     }
 
-    const stx::string_view& tree_entry::name() const
+    const stx::string_view tree_entry::name() const
     {
         return name_;
     }

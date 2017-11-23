@@ -3,8 +3,8 @@
 namespace yaga_git
 {
     signature::signature(
-        const std::string& name,
-        const std::string& email,
+        const stx::string_view name,
+        const stx::string_view email,
         const time_with_offset& time)
         : name_(name), email_(email), time_(time)
     {
@@ -17,12 +17,12 @@ namespace yaga_git
     {
     }
 
-    const stx::string_view& signature::email() const
+    const stx::string_view signature::email() const
     {
         return email_;
     }
 
-    const stx::string_view& signature::name() const
+    const stx::string_view signature::name() const
     {
         return name_;
     }
